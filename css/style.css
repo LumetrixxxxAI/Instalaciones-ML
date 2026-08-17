@@ -214,7 +214,7 @@ section h2 { font-size: clamp(28px, 4vw, 44px); color: var(--white); margin-bott
   max-width: 480px;
   width: 100%;
   justify-self: center;
-  perspective: 2200px;
+  perspective: 4200px;
 }
 .despiece-3d {
   position: absolute;
@@ -256,10 +256,15 @@ section h2 { font-size: clamp(28px, 4vw, 44px); color: var(--white); margin-bott
   height: 100%;
   overflow: hidden;
   border-radius: 18px;
-  filter: drop-shadow(0 20px 40px rgba(0,0,0,0.45));
   background: var(--navy-950);
-  transform-style: preserve-3d;
-  backface-visibility: hidden;
+  pointer-events: none;
+  box-shadow:
+    0 30px 60px -10px rgba(0,0,0,0.6),
+    0 10px 20px -4px rgba(0,0,0,0.5),
+    inset 0 2px 0 rgba(255,255,255,0.18),
+    inset 0 -10px 22px rgba(0,0,0,0.5),
+    inset 10px 0 18px rgba(0,0,0,0.25),
+    inset -10px 0 18px rgba(0,0,0,0.25);
 }
 .despiece-panel .layer-cover img {
   position: absolute;

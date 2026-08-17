@@ -93,12 +93,15 @@ const progressBar = document.getElementById('despieceProgressBar');
 // so moving along Z separates the layers like pulling apart a real stack.
 // data-layer: 1=cristal(top) 2=celulas 3=eva 4=backsheet 5=marco(bottom)
 // Desktop gets a wider, more dramatic separation; mobile keeps the original compact spacing.
+// Each layer also gets a small local Y stagger (in the panel's own un-tilted plane)
+// so nearer layers never fully eclipse the ones behind them — every layer keeps
+// its own hoverable sliver on screen, including the middle one (EVA).
 const explodeOffset = isMobile
-  ? { 1: { z: 104.5 }, 2: { z: 52.25 }, 3: { z: 0 }, 4: { z: -52.25 }, 5: { z: -104.5 } }
-  : { 1: { z: 260 }, 2: { z: 130 }, 3: { z: 0 }, 4: { z: -130 }, 5: { z: -260 } };
+  ? { 1: { x: -22, y: -46, z: 104.5 }, 2: { x: -11, y: -23, z: 52.25 }, 3: { x: 0, y: 0, z: 0 }, 4: { x: 11, y: 23, z: -52.25 }, 5: { x: 22, y: 46, z: -104.5 } }
+  : { 1: { x: -55, y: -110, z: 260 }, 2: { x: -28, y: -55, z: 130 }, 3: { x: 0, y: 0, z: 0 }, 4: { x: 28, y: 55, z: -130 }, 5: { x: 55, y: 110, z: -260 } };
 
 layers.forEach(layer => {
-  gsap.set(layer, { transformOrigin: '50% 50%', z: 0 });
+  gsap.set(layer, { transformOrigin: '50% 50%', x: 0, y: 0, z: 0 });
 });
 
 const layerCover = document.getElementById('layerCover');
@@ -153,6 +156,8 @@ layers.forEach(layer => {
   const offset = explodeOffset[n];
   despieceTimeline.to(layer, {
     z: offset.z,
+    y: offset.y,
+    x: offset.x,
     ease: 'power2.out',
     duration: 1
   }, 0);
@@ -161,6 +166,8 @@ layers.forEach(layer => {
 // Hold explosion, then reassemble fully at the very end to hint "sistema completo"
 despieceTimeline.to(layers, {
   z: 0,
+  y: 0,
+  x: 0,
   ease: 'power2.inOut',
   duration: 1
 }, 4.2);
