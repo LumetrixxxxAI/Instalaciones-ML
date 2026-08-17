@@ -135,6 +135,7 @@ section h2 { font-size: clamp(28px, 4vw, 44px); color: var(--white); margin-bott
 .main-nav { display: flex; gap: 28px; }
 .main-nav a { font-size: 14.5px; font-weight: 500; color: var(--gray-300); transition: color 0.2s; }
 .main-nav a:hover { color: var(--sun-400); }
+.mobile-nav-cta { display: none; }
 .header-cta { display: flex; gap: 10px; align-items: center; }
 .nav-toggle { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 8px; }
 .nav-toggle span { width: 24px; height: 2px; background: var(--white); border-radius: 2px; transition: 0.3s; }
@@ -442,8 +443,11 @@ section h2 { font-size: clamp(28px, 4vw, 44px); color: var(--white); margin-bott
 
 @media (max-width: 768px) {
   .main-nav { display: none; }
-  .header-cta .btn-ghost-sm { display: none; }
+  .header-cta { display: none; }
   .nav-toggle { display: flex; }
+  .header-inner { flex-wrap: nowrap; }
+  .logo { font-size: 17px; }
+  .mobile-nav-cta { display: inline-flex; width: 100%; text-align: center; justify-content: center; }
   .main-nav.open {
     display: flex; flex-direction: column;
     position: absolute; top: 100%; left: 0; right: 0;
