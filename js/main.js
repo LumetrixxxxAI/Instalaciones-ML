@@ -92,14 +92,10 @@ const progressBar = document.getElementById('despieceProgressBar');
 // Layer target depth (Z) offsets when exploded: the panel is tilted in 3D,
 // so moving along Z separates the layers like pulling apart a real stack.
 // data-layer: 1=cristal(top) 2=celulas 3=eva 4=backsheet 5=marco(bottom)
-const depthScale = isMobile ? 0.55 : 1;
-const explodeOffset = {
-  1: { z: 190 * depthScale },
-  2: { z: 95 * depthScale },
-  3: { z: 0 },
-  4: { z: -95 * depthScale },
-  5: { z: -190 * depthScale }
-};
+// Desktop gets a wider, more dramatic separation; mobile keeps the original compact spacing.
+const explodeOffset = isMobile
+  ? { 1: { z: 104.5 }, 2: { z: 52.25 }, 3: { z: 0 }, 4: { z: -52.25 }, 5: { z: -104.5 } }
+  : { 1: { z: 260 }, 2: { z: 130 }, 3: { z: 0 }, 4: { z: -130 }, 5: { z: -260 } };
 
 layers.forEach(layer => {
   gsap.set(layer, { transformOrigin: '50% 50%', z: 0 });
@@ -114,6 +110,21 @@ function setCaptionStep(index) {
   });
 }
 setCaptionStep(0);
+
+// Desktop only: hovering a layer with the cursor shows its description directly
+// (mobile has no cursor, so it keeps the scroll-driven captions as before)
+if (!isMobile) {
+  layers.forEach(layer => {
+    const stepIndex = parseInt(layer.getAttribute('data-layer'), 10) - 1;
+    layer.addEventListener('mouseenter', () => {
+      setCaptionStep(stepIndex);
+      layer.classList.add('layer-hovered');
+    });
+    layer.addEventListener('mouseleave', () => {
+      layer.classList.remove('layer-hovered');
+    });
+  });
+}
 
 const despieceTimeline = gsap.timeline({
   scrollTrigger: {

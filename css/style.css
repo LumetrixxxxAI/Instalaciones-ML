@@ -214,7 +214,7 @@ section h2 { font-size: clamp(28px, 4vw, 44px); color: var(--white); margin-bott
   max-width: 480px;
   width: 100%;
   justify-self: center;
-  perspective: 1800px;
+  perspective: 2200px;
 }
 .despiece-3d {
   position: absolute;
@@ -234,6 +234,11 @@ section h2 { font-size: clamp(28px, 4vw, 44px); color: var(--white); margin-bott
   background: var(--navy-950);
   transform-style: preserve-3d;
   backface-visibility: hidden;
+  cursor: pointer;
+  transition: filter 0.25s ease;
+}
+.despiece-panel .layer.layer-hovered {
+  filter: brightness(1.15) drop-shadow(0 18px 40px rgba(245,166,35,0.45));
 }
 .despiece-panel .layer img {
   position: absolute;
