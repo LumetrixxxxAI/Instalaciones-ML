@@ -98,8 +98,8 @@ const progressBar = document.getElementById('despieceProgressBar');
 // fully hidden behind another (including the middle one, EVA).
 // data-layer: 1=cristal(top) 2=celulas 3=eva 4=backsheet 5=marco(bottom)
 const explodeOffset = isMobile
-  ? { 1: { x: -38, y: -16 }, 2: { x: -19, y: -8 }, 3: { x: 0, y: 0 }, 4: { x: 19, y: 8 }, 5: { x: 38, y: 16 } }
-  : { 1: { x: -75, y: -32 }, 2: { x: -37, y: -16 }, 3: { x: 0, y: 0 }, 4: { x: 37, y: 16 }, 5: { x: 75, y: 32 } };
+  ? { 1: { x: -64, y: -27 }, 2: { x: -32, y: -13 }, 3: { x: 0, y: 0 }, 4: { x: 32, y: 13 }, 5: { x: 64, y: 27 } }
+  : { 1: { x: -135, y: -57 }, 2: { x: -67, y: -29 }, 3: { x: 0, y: 0 }, 4: { x: 67, y: 29 }, 5: { x: 135, y: 57 } };
 
 layers.forEach(layer => {
   gsap.set(layer, { x: 0, y: 0 });
