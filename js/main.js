@@ -89,22 +89,24 @@ const layers = gsap.utils.toArray('.despiece-panel .layer');
 const capSteps = gsap.utils.toArray('.cap-step');
 const progressBar = document.getElementById('despieceProgressBar');
 
-// Layer target offsets when exploded: pure vertical separation, no tilt/lateral drift
+// Layer target depth (Z) offsets when exploded: the panel is tilted in 3D,
+// so moving along Z separates the layers like pulling apart a real stack.
 // data-layer: 1=cristal(top) 2=celulas 3=eva 4=backsheet 5=marco(bottom)
+const depthScale = isMobile ? 0.55 : 1;
 const explodeOffset = {
-  1: { y: -170 },
-  2: { y: -85 },
-  3: { y: 0 },
-  4: { y: 85 },
-  5: { y: 170 }
+  1: { z: 190 * depthScale },
+  2: { z: 95 * depthScale },
+  3: { z: 0 },
+  4: { z: -95 * depthScale },
+  5: { z: -190 * depthScale }
 };
 
 layers.forEach(layer => {
-  gsap.set(layer, { transformOrigin: '50% 50%' });
+  gsap.set(layer, { transformOrigin: '50% 50%', z: 0 });
 });
 
 const layerCover = document.getElementById('layerCover');
-gsap.set(layerCover, { opacity: 1 });
+gsap.set(layerCover, { opacity: 1, z: 1 });
 
 function setCaptionStep(index) {
   capSteps.forEach((step, i) => {
@@ -134,12 +136,12 @@ despieceTimeline.to(layerCover, {
   duration: 0.6
 }, 0);
 
-// Steps: pure vertical explode by ~70% progress, then hold, then reassemble near the end
+// Steps: explode apart along the tilted depth axis by ~70% progress, then hold, then reassemble near the end
 layers.forEach(layer => {
   const n = layer.getAttribute('data-layer');
   const offset = explodeOffset[n];
   despieceTimeline.to(layer, {
-    y: offset.y,
+    z: offset.z,
     ease: 'power2.out',
     duration: 1
   }, 0);
@@ -147,7 +149,7 @@ layers.forEach(layer => {
 
 // Hold explosion, then reassemble fully at the very end to hint "sistema completo"
 despieceTimeline.to(layers, {
-  y: 0,
+  z: 0,
   ease: 'power2.inOut',
   duration: 1
 }, 4.2);

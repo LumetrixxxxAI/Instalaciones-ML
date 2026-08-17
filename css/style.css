@@ -214,7 +214,13 @@ section h2 { font-size: clamp(28px, 4vw, 44px); color: var(--white); margin-bott
   max-width: 480px;
   width: 100%;
   justify-self: center;
-  perspective: 1400px;
+  perspective: 1800px;
+}
+.despiece-3d {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+  transform: rotateX(52deg) rotateZ(-28deg);
 }
 .despiece-panel .layer {
   position: absolute;
@@ -224,8 +230,10 @@ section h2 { font-size: clamp(28px, 4vw, 44px); color: var(--white); margin-bott
   overflow: hidden;
   border-radius: 18px;
   will-change: transform;
-  filter: drop-shadow(0 20px 40px rgba(0,0,0,0.45));
+  filter: drop-shadow(0 14px 30px rgba(0,0,0,0.55));
   background: var(--navy-950);
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
 }
 .despiece-panel .layer img {
   position: absolute;
@@ -243,9 +251,10 @@ section h2 { font-size: clamp(28px, 4vw, 44px); color: var(--white); margin-bott
   height: 100%;
   overflow: hidden;
   border-radius: 18px;
-  z-index: 10;
   filter: drop-shadow(0 20px 40px rgba(0,0,0,0.45));
   background: var(--navy-950);
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
 }
 .despiece-panel .layer-cover img {
   position: absolute;
@@ -493,7 +502,7 @@ section h2 { font-size: clamp(28px, 4vw, 44px); color: var(--white); margin-bott
 
   .despiece-pin { height: 480vh; }
   .despiece-stage { padding: 0 20px; }
-  .despiece-panel { max-width: 240px; }
+  .despiece-panel { max-width: 240px; perspective: 900px; }
   .cap-step h3 { font-size: 22px; }
   .cap-step p { font-size: 15px; }
 
@@ -509,7 +518,7 @@ section h2 { font-size: clamp(28px, 4vw, 44px); color: var(--white); margin-bott
 
 @media (max-width: 480px) {
   .container { padding: 0 18px; }
-  .despiece-panel { max-width: 200px; }
+  .despiece-panel { max-width: 200px; perspective: 750px; }
   .whatsapp-float { width: 52px; height: 52px; bottom: 16px; right: 16px; }
   .cookie-banner { flex-direction: column; align-items: flex-start; }
 }
