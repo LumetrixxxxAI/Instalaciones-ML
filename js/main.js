@@ -89,23 +89,24 @@ const layers = gsap.utils.toArray('.despiece-panel .layer');
 const capSteps = gsap.utils.toArray('.cap-step');
 const progressBar = document.getElementById('despieceProgressBar');
 
-// Layer target depth (Z) offsets when exploded: the panel is tilted in 3D,
-// so moving along Z separates the layers like pulling apart a real stack.
+// Every layer is pre-warped in Python to match the exact outline/perspective of the
+// real photographed panel (see img/capas/*-warp.png), so at rest they line up pixel
+// for pixel with the whole-panel cover photo — it's genuinely the same object, just
+// sliced apart. Explosion is therefore a plain 2D offset along the panel's own
+// surface directions (no CSS 3D needed): each layer slides slightly toward/away from
+// the camera (the "front" unit vector) plus a small lateral fan so no layer is ever
+// fully hidden behind another (including the middle one, EVA).
 // data-layer: 1=cristal(top) 2=celulas 3=eva 4=backsheet 5=marco(bottom)
-// Desktop gets a wider, more dramatic separation; mobile keeps the original compact spacing.
-// Each layer also gets a small local Y stagger (in the panel's own un-tilted plane)
-// so nearer layers never fully eclipse the ones behind them — every layer keeps
-// its own hoverable sliver on screen, including the middle one (EVA).
 const explodeOffset = isMobile
-  ? { 1: { x: -22, y: -46, z: 104.5 }, 2: { x: -11, y: -23, z: 52.25 }, 3: { x: 0, y: 0, z: 0 }, 4: { x: 11, y: 23, z: -52.25 }, 5: { x: 22, y: 46, z: -104.5 } }
-  : { 1: { x: -55, y: -110, z: 260 }, 2: { x: -28, y: -55, z: 130 }, 3: { x: 0, y: 0, z: 0 }, 4: { x: 28, y: 55, z: -130 }, 5: { x: 55, y: 110, z: -260 } };
+  ? { 1: { x: -38, y: -16 }, 2: { x: -19, y: -8 }, 3: { x: 0, y: 0 }, 4: { x: 19, y: 8 }, 5: { x: 38, y: 16 } }
+  : { 1: { x: -75, y: -32 }, 2: { x: -37, y: -16 }, 3: { x: 0, y: 0 }, 4: { x: 37, y: 16 }, 5: { x: 75, y: 32 } };
 
 layers.forEach(layer => {
-  gsap.set(layer, { transformOrigin: '50% 50%', x: 0, y: 0, z: 0 });
+  gsap.set(layer, { x: 0, y: 0 });
 });
 
 const layerCover = document.getElementById('layerCover');
-gsap.set(layerCover, { opacity: 1, z: 1 });
+gsap.set(layerCover, { opacity: 1 });
 
 function setCaptionStep(index) {
   capSteps.forEach((step, i) => {
@@ -150,14 +151,13 @@ despieceTimeline.to(layerCover, {
   duration: 0.6
 }, 0);
 
-// Steps: explode apart along the tilted depth axis by ~70% progress, then hold, then reassemble near the end
+// Steps: explode apart by ~70% progress, then hold, then reassemble near the end
 layers.forEach(layer => {
   const n = layer.getAttribute('data-layer');
   const offset = explodeOffset[n];
   despieceTimeline.to(layer, {
-    z: offset.z,
-    y: offset.y,
     x: offset.x,
+    y: offset.y,
     ease: 'power2.out',
     duration: 1
   }, 0);
@@ -165,9 +165,8 @@ layers.forEach(layer => {
 
 // Hold explosion, then reassemble fully at the very end to hint "sistema completo"
 despieceTimeline.to(layers, {
-  z: 0,
-  y: 0,
   x: 0,
+  y: 0,
   ease: 'power2.inOut',
   duration: 1
 }, 4.2);

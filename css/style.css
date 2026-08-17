@@ -210,44 +210,34 @@ section h2 { font-size: clamp(28px, 4vw, 44px); color: var(--white); margin-bott
 }
 .despiece-panel {
   position: relative;
-  aspect-ratio: 1/1;
-  max-width: 480px;
+  aspect-ratio: 948/1158;
+  max-width: 400px;
   width: 100%;
   justify-self: center;
-  perspective: 4200px;
 }
 .despiece-3d {
   position: absolute;
   inset: 0;
-  transform-style: preserve-3d;
-  transform: rotateX(52deg) rotateZ(-28deg);
 }
 .despiece-panel .layer {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
-  overflow: hidden;
-  border-radius: 18px;
   will-change: transform;
-  filter: drop-shadow(0 14px 30px rgba(0,0,0,0.55));
-  background: var(--navy-950);
-  transform-style: preserve-3d;
-  backface-visibility: hidden;
+  filter: drop-shadow(0 14px 26px rgba(0,0,0,0.5));
   cursor: pointer;
   transition: filter 0.25s ease;
+  clip-path: polygon(27.22% 9.41%, 95.68% 2.25%, 78.69% 96.89%, 2.74% 87.13%);
 }
 .despiece-panel .layer.layer-hovered {
-  filter: brightness(1.15) drop-shadow(0 18px 40px rgba(245,166,35,0.45));
+  filter: brightness(1.18) drop-shadow(0 16px 32px rgba(245,166,35,0.5));
 }
 .despiece-panel .layer img {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 124%;
-  height: 124%;
-  object-fit: cover;
-  transform: translate(-50%, -50%);
+  inset: 0;
+  width: 100%;
+  height: 100%;
 }
 .despiece-panel .layer-cover {
   position: absolute;
@@ -503,7 +493,7 @@ section h2 { font-size: clamp(28px, 4vw, 44px); color: var(--white); margin-bott
 
   .despiece-pin { height: 480vh; }
   .despiece-stage { padding: 0 20px; }
-  .despiece-panel { max-width: 240px; perspective: 900px; }
+  .despiece-panel { max-width: 220px; }
   .cap-step h3 { font-size: 22px; }
   .cap-step p { font-size: 15px; }
 
@@ -519,7 +509,7 @@ section h2 { font-size: clamp(28px, 4vw, 44px); color: var(--white); margin-bott
 
 @media (max-width: 480px) {
   .container { padding: 0 18px; }
-  .despiece-panel { max-width: 200px; perspective: 750px; }
+  .despiece-panel { max-width: 180px; }
   .whatsapp-float { width: 52px; height: 52px; bottom: 16px; right: 16px; }
   .cookie-banner { flex-direction: column; align-items: flex-start; }
 }
