@@ -89,19 +89,18 @@ const layers = gsap.utils.toArray('.despiece-panel .layer');
 const capSteps = gsap.utils.toArray('.cap-step');
 const progressBar = document.getElementById('despieceProgressBar');
 
-// Layer target offsets when exploded (glass on top moves up, frame at bottom moves down)
+// Layer target offsets when exploded: pure vertical separation, no tilt/lateral drift
 // data-layer: 1=cristal(top) 2=celulas 3=eva 4=backsheet 5=marco(bottom)
 const explodeOffset = {
-  1: { y: -140, z: 120 },
-  2: { y: -60, z: 60 },
-  3: { y: 10, z: 10 },
-  4: { y: 70, z: -40 },
-  5: { y: 130, z: -90 }
+  1: { y: -170 },
+  2: { y: -85 },
+  3: { y: 0 },
+  4: { y: 85 },
+  5: { y: 170 }
 };
 
 layers.forEach(layer => {
-  const n = layer.getAttribute('data-layer');
-  gsap.set(layer, { transformPerspective: 1200, transformOrigin: '50% 50%' });
+  gsap.set(layer, { transformOrigin: '50% 50%' });
 });
 
 function setCaptionStep(index) {
@@ -125,29 +124,20 @@ const despieceTimeline = gsap.timeline({
   }
 });
 
-// Steps: 0 explode fully by ~70% progress, then hold, then slight reassembly cue near end
+// Steps: pure vertical explode by ~70% progress, then hold, then reassemble near the end
 layers.forEach(layer => {
   const n = layer.getAttribute('data-layer');
   const offset = explodeOffset[n];
   despieceTimeline.to(layer, {
     y: offset.y,
-    x: (n % 2 === 0 ? -1 : 1) * 18,
-    rotateX: 8,
-    scale: 1 - (Math.abs(offset.z) / 1000),
-    opacity: 1,
     ease: 'power2.out',
     duration: 1
   }, 0);
 });
 
-// Hold explosion, then reassemble slightly at the very end to hint "sistema completo"
+// Hold explosion, then reassemble fully at the very end to hint "sistema completo"
 despieceTimeline.to(layers, {
-  y: (i, target) => {
-    const n = target.getAttribute('data-layer');
-    return explodeOffset[n].y * 0.35;
-  },
-  scale: 1,
-  rotateX: 0,
+  y: 0,
   ease: 'power2.inOut',
   duration: 1
 }, 4.2);
