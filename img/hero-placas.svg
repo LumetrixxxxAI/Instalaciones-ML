@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#08152c"/>
+      <stop offset="55%" stop-color="#12294f"/>
+      <stop offset="100%" stop-color="#1d3a66"/>
+    </linearGradient>
+    <linearGradient id="roof" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#2a2f3a"/>
+      <stop offset="100%" stop-color="#171a21"/>
+    </linearGradient>
+    <linearGradient id="panelg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1c3a6e"/>
+      <stop offset="100%" stop-color="#081428"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#sky)"/>
+  <circle cx="1300" cy="180" r="90" fill="#ffe08a" opacity="0.85"/>
+  <polygon points="0,620 1600,560 1600,900 0,900" fill="url(#roof)"/>
+  <g transform="translate(120,520) skewX(-8)">
+    <g id="panelrow">
+      <rect x="0" y="0" width="180" height="110" rx="4" fill="url(#panelg)" stroke="#8b93a3" stroke-width="3"/>
+      <rect x="200" y="0" width="180" height="110" rx="4" fill="url(#panelg)" stroke="#8b93a3" stroke-width="3"/>
+      <rect x="400" y="0" width="180" height="110" rx="4" fill="url(#panelg)" stroke="#8b93a3" stroke-width="3"/>
+      <rect x="600" y="0" width="180" height="110" rx="4" fill="url(#panelg)" stroke="#8b93a3" stroke-width="3"/>
+      <rect x="800" y="0" width="180" height="110" rx="4" fill="url(#panelg)" stroke="#8b93a3" stroke-width="3"/>
+      <rect x="1000" y="0" width="180" height="110" rx="4" fill="url(#panelg)" stroke="#8b93a3" stroke-width="3"/>
+    </g>
+    <g id="panelrow2" transform="translate(0,130)">
+      <rect x="0" y="0" width="180" height="110" rx="4" fill="url(#panelg)" stroke="#8b93a3" stroke-width="3"/>
+      <rect x="200" y="0" width="180" height="110" rx="4" fill="url(#panelg)" stroke="#8b93a3" stroke-width="3"/>
+      <rect x="400" y="0" width="180" height="110" rx="4" fill="url(#panelg)" stroke="#8b93a3" stroke-width="3"/>
+      <rect x="600" y="0" width="180" height="110" rx="4" fill="url(#panelg)" stroke="#8b93a3" stroke-width="3"/>
+      <rect x="800" y="0" width="180" height="110" rx="4" fill="url(#panelg)" stroke="#8b93a3" stroke-width="3"/>
+      <rect x="1000" y="0" width="180" height="110" rx="4" fill="url(#panelg)" stroke="#8b93a3" stroke-width="3"/>
+    </g>
+  </g>
+  <text x="800" y="870" text-anchor="middle" font-family="Arial" font-size="20" fill="#ffffff" opacity="0.4">PLACEHOLDER — sustituir por foto real de instalación (tejado con placas, cielo azul)</text>
+</svg>

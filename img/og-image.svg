@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#08152c"/>
+      <stop offset="100%" stop-color="#1d3a66"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <circle cx="1000" cy="140" r="70" fill="#ffe08a" opacity="0.85"/>
+  <text x="80" y="300" font-family="Arial" font-size="56" font-weight="bold" fill="#ffffff">Instalaciones ML</text>
+  <text x="80" y="360" font-family="Arial" font-size="30" fill="#f5a623">Placas solares y autoconsumo en Málaga</text>
+  <text x="80" y="420" font-family="Arial" font-size="24" fill="#c9d8ff">Alhaurín de la Torre · 5,0★ en Google</text>
+</svg>

@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 200">
+  <polygon points="120,20 220,90 20,90" fill="#12203f" stroke="#f5a623" stroke-width="3" stroke-linejoin="round"/>
+  <rect x="45" y="90" width="150" height="90" fill="#0f1f3d" stroke="#3a6bc9" stroke-width="2"/>
+  <rect x="105" y="130" width="30" height="50" fill="#0a1628" stroke="#f5a623" stroke-width="2"/>
+  <rect x="60" y="105" width="28" height="28" fill="#1c3a6e" stroke="#3a6bc9"/>
+  <rect x="152" y="105" width="28" height="28" fill="#1c3a6e" stroke="#3a6bc9"/>
+  <g transform="translate(55,45) rotate(-20)">
+    <rect x="0" y="0" width="55" height="30" rx="3" fill="#081428" stroke="#f5a623" stroke-width="2"/>
+    <line x1="14" y1="0" x2="14" y2="30" stroke="#3a6bc9"/>
+    <line x1="28" y1="0" x2="28" y2="30" stroke="#3a6bc9"/>
+    <line x1="41" y1="0" x2="41" y2="30" stroke="#3a6bc9"/>
+  </g>
+  <text x="120" y="198" text-anchor="middle" font-family="Arial" font-size="13" fill="#eaf6ff">CASA</text>
+</svg>
