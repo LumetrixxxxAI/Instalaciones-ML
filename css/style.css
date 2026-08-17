@@ -236,6 +236,26 @@ section h2 { font-size: clamp(28px, 4vw, 44px); color: var(--white); margin-bott
   object-fit: cover;
   transform: translate(-50%, -50%);
 }
+.despiece-panel .layer-cover {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 18px;
+  z-index: 10;
+  filter: drop-shadow(0 20px 40px rgba(0,0,0,0.45));
+  background: var(--navy-950);
+}
+.despiece-panel .layer-cover img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 108%;
+  height: 108%;
+  object-fit: cover;
+  transform: translate(-50%, -50%);
+}
 .despiece-caption { position: relative; min-height: 220px; }
 .cap-step {
   position: absolute;

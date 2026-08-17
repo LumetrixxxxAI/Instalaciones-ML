@@ -103,6 +103,9 @@ layers.forEach(layer => {
   gsap.set(layer, { transformOrigin: '50% 50%' });
 });
 
+const layerCover = document.getElementById('layerCover');
+gsap.set(layerCover, { opacity: 1 });
+
 function setCaptionStep(index) {
   capSteps.forEach((step, i) => {
     step.classList.toggle('active', i === index);
@@ -124,6 +127,13 @@ const despieceTimeline = gsap.timeline({
   }
 });
 
+// Cover fades out right at the start, revealing the exploding layers beneath
+despieceTimeline.to(layerCover, {
+  opacity: 0,
+  ease: 'power1.out',
+  duration: 0.6
+}, 0);
+
 // Steps: pure vertical explode by ~70% progress, then hold, then reassemble near the end
 layers.forEach(layer => {
   const n = layer.getAttribute('data-layer');
@@ -141,6 +151,13 @@ despieceTimeline.to(layers, {
   ease: 'power2.inOut',
   duration: 1
 }, 4.2);
+
+// Bring back the whole-panel cover once layers have reassembled
+despieceTimeline.to(layerCover, {
+  opacity: 1,
+  ease: 'power1.in',
+  duration: 0.6
+}, 4.8);
 
 /* ---------- Sistema diagram: animated energy flow lines ---------- */
 const flowPaths = document.querySelectorAll('.sistema-lines path');
