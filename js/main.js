@@ -124,9 +124,9 @@ const progressBar = document.getElementById('despieceProgressBar');
 // the camera (the "front" unit vector) plus a small lateral fan so no layer is ever
 // fully hidden behind another (including the middle one, EVA).
 // data-layer: 1=cristal(top) 2=celulas 3=eva 4=backsheet 5=marco(bottom)
-const explodeOffset = isMobile
-  ? { 1: { x: -64, y: -27 }, 2: { x: -32, y: -13 }, 3: { x: 0, y: 0 }, 4: { x: 32, y: 13 }, 5: { x: 64, y: 27 } }
-  : { 1: { x: -135, y: -57 }, 2: { x: -67, y: -29 }, 3: { x: 0, y: 0 }, 4: { x: 67, y: 29 }, 5: { x: 135, y: 57 } };
+// Same magnitude on mobile and desktop — the panel itself just scales down with
+// the container width, so the explode feels identical on every screen size.
+const explodeOffset = { 1: { x: -135, y: -57 }, 2: { x: -67, y: -29 }, 3: { x: 0, y: 0 }, 4: { x: 67, y: 29 }, 5: { x: 135, y: 57 } };
 
 layers.forEach(layer => {
   gsap.set(layer, { x: 0, y: 0 });
@@ -139,11 +139,19 @@ function setCaptionStep(index) {
   capSteps.forEach((step, i) => {
     step.classList.toggle('active', i === index);
   });
+  // Mobile has no cursor, so the layer matching the current scroll step
+  // lights up on its own instead of waiting for a hover that can't happen.
+  if (isMobile) {
+    layers.forEach(layer => {
+      const layerStepIndex = parseInt(layer.getAttribute('data-layer'), 10) - 1;
+      layer.classList.toggle('layer-hovered', layerStepIndex === index);
+    });
+  }
 }
 setCaptionStep(0);
 
 // Desktop only: hovering a layer with the cursor shows its description directly
-// (mobile has no cursor, so it keeps the scroll-driven captions as before)
+// (mobile lights up the active layer automatically as you scroll, see setCaptionStep)
 if (!isMobile) {
   layers.forEach(layer => {
     const stepIndex = parseInt(layer.getAttribute('data-layer'), 10) - 1;

@@ -493,7 +493,7 @@ section h2 { font-size: clamp(28px, 4vw, 44px); color: var(--white); margin-bott
   .confianza-grid { grid-template-columns: 1fr; }
   .footer-inner { grid-template-columns: 1fr 1fr; }
   .despiece-stage { grid-template-columns: 1fr; gap: 20px; }
-  .despiece-panel { max-width: 320px; }
+  .despiece-panel { max-width: 380px; }
 }
 
 @media (max-width: 768px) {
@@ -516,11 +516,13 @@ section h2 { font-size: clamp(28px, 4vw, 44px); color: var(--white); margin-bott
 
   .despiece-pin { height: 480vh; }
   .despiece-stage { padding: 0 20px; }
-  .despiece-panel { max-width: 220px; }
+  .despiece-panel { max-width: 340px; }
   .cap-step h3 { font-size: 22px; }
   .cap-step p { font-size: 15px; }
 
   .sistema-diagram { height: 460px; padding: 0; }
+  .sistema-node[data-node="red"] { left: 85% !important; }
+  .sistema-node[data-node="sol"] { left: 12% !important; }
   .sistema-node { width: 74px; }
   .sistema-node img { width: 52px; height: 52px; }
   .sistema-node span { font-size: 11.5px; }
@@ -532,7 +534,7 @@ section h2 { font-size: clamp(28px, 4vw, 44px); color: var(--white); margin-bott
 
 @media (max-width: 480px) {
   .container { padding: 0 18px; }
-  .despiece-panel { max-width: 180px; }
+  .despiece-panel { max-width: 300px; }
   .whatsapp-float { width: 52px; height: 52px; bottom: 16px; right: 16px; }
   .cookie-banner { flex-direction: column; align-items: flex-start; }
 }
