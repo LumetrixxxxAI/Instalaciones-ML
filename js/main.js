@@ -37,19 +37,46 @@ document.getElementById('cookieDecline').addEventListener('click', () => {
 
 /* ---------- Lead form -> WhatsApp ---------- */
 const leadForm = document.getElementById('leadForm');
+const SAVINGS_RATE = 0.65; // estimación orientativa de ahorro medio (la web promete "hasta 70%")
+const calcResult = document.getElementById('calcResult');
+const calcSendBtn = document.getElementById('calcSendBtn');
+let lastLeadData = null;
+
 leadForm.addEventListener('submit', (e) => {
   e.preventDefault();
   const nombre = document.getElementById('nombre').value.trim();
   const telefono = document.getElementById('telefono').value.trim();
   const vivienda = document.getElementById('vivienda').value;
-  const factura = document.getElementById('factura').value;
+  const factura = parseFloat(document.getElementById('factura').value);
+
+  if (!isFinite(factura) || factura <= 0) return;
+
+  const ahorroMensual = Math.round(factura * SAVINGS_RATE);
+  const nuevaFactura = Math.round(factura - ahorroMensual);
+  const ahorroAnual = ahorroMensual * 12;
+
+  document.getElementById('resFactura').textContent = factura;
+  document.getElementById('resMensual').textContent = ahorroMensual + '€';
+  document.getElementById('resAnual').textContent = ahorroAnual + '€';
+  document.getElementById('resNuevaFactura').textContent = nuevaFactura + '€';
+
+  lastLeadData = { nombre, telefono, vivienda, factura, ahorroMensual, ahorroAnual };
+
+  calcResult.classList.add('show');
+  calcResult.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+});
+
+calcSendBtn.addEventListener('click', () => {
+  if (!lastLeadData) return;
+  const { nombre, telefono, vivienda, factura, ahorroMensual, ahorroAnual } = lastLeadData;
 
   const msg =
     `Hola, quiero calcular mi ahorro con placas solares.%0A` +
     `Nombre: ${encodeURIComponent(nombre)}%0A` +
     `Teléfono: ${encodeURIComponent(telefono)}%0A` +
     `Tipo de vivienda: ${encodeURIComponent(vivienda)}%0A` +
-    `Factura media: ${encodeURIComponent(factura)} €/mes`;
+    `Factura media: ${encodeURIComponent(factura)} €/mes%0A` +
+    `Ahorro estimado: ${ahorroMensual} €/mes (${ahorroAnual} €/año)`;
 
   window.open(`https://wa.me/34640532175?text=${msg}`, '_blank');
 });

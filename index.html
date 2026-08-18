@@ -269,8 +269,24 @@
         <label for="factura">Factura media al mes (€)</label>
         <input type="number" id="factura" name="factura" placeholder="Ej. 90" min="0" required>
       </div>
-      <button type="submit" class="btn btn-primary btn-full">Calcular mi ahorro y enviar por WhatsApp</button>
+      <button type="submit" class="btn btn-primary btn-full" id="calcSubmitBtn">Calcular mi ahorro</button>
       <p class="form-legal">Al enviar aceptas nuestra <a href="legal/privacidad.html">política de privacidad</a>.</p>
+
+      <div class="calc-result" id="calcResult">
+        <span class="calc-result-label">Con una factura de <strong id="resFactura">90</strong>€/mes, podrías ahorrar hasta:</span>
+        <div class="calc-result-numbers">
+          <div>
+            <span class="calc-result-value" id="resMensual">0€</span>
+            <span class="calc-result-unit">al mes</span>
+          </div>
+          <div>
+            <span class="calc-result-value" id="resAnual">0€</span>
+            <span class="calc-result-unit">al año</span>
+          </div>
+        </div>
+        <p class="calc-result-note">Nueva factura estimada: <strong id="resNuevaFactura">0€</strong>/mes. Estimación orientativa (65% de ahorro medio) — el estudio gratuito te dará la cifra exacta.</p>
+        <button type="button" class="btn btn-whatsapp-lg btn-full" id="calcSendBtn">Enviar esta estimación por WhatsApp</button>
+      </div>
     </form>
   </div>
 </section>
@@ -429,6 +445,6 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-<script src="js/main.js"></script>
+<script src="js/main.js?v=2"></script>
 </body>
 </html>
