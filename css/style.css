@@ -418,7 +418,9 @@ section h2 { font-size: clamp(28px, 4vw, 44px); color: var(--white); margin-bott
 
 /* ---------- Confianza ---------- */
 .confianza { padding: 110px 0; text-align: center; background: linear-gradient(180deg, var(--navy-950), var(--navy-900) 50%, var(--navy-950)); }
-.confianza-grid { margin-top: 50px; display: grid; grid-template-columns: 0.7fr 1fr 1fr; gap: 26px; text-align: left; }
+.confianza-grid { margin-top: 50px; max-width: 760px; margin-left: auto; margin-right: auto; display: grid; grid-template-columns: 0.8fr 1fr; gap: 26px; text-align: left; }
+.testimonial-cta { display: flex; flex-direction: column; align-items: flex-start; justify-content: center; gap: 18px; }
+.testimonial-cta p { color: var(--gray-300); font-size: 16px; }
 .confianza-rating { text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; background: rgba(47,111,214,0.08); border-radius: var(--radius); padding: 30px; border: 1px solid rgba(79,142,240,0.18); }
 .stars { color: var(--sun-500); font-size: 24px; letter-spacing: 4px; }
 .rating-value { font-family: var(--font-head); font-size: 46px; font-weight: 700; color: var(--white); margin: 10px 0 4px; }
