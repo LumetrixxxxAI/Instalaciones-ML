@@ -124,9 +124,11 @@ const progressBar = document.getElementById('despieceProgressBar');
 // the camera (the "front" unit vector) plus a small lateral fan so no layer is ever
 // fully hidden behind another (including the middle one, EVA).
 // data-layer: 1=cristal(top) 2=celulas 3=eva 4=backsheet 5=marco(bottom)
-// Same magnitude on mobile and desktop — the panel itself just scales down with
-// the container width, so the explode feels identical on every screen size.
-const explodeOffset = { 1: { x: -135, y: -57 }, 2: { x: -67, y: -29 }, 3: { x: 0, y: 0 }, 4: { x: 67, y: 29 }, 5: { x: 135, y: 57 } };
+// Mobile has much less width to work with than desktop, so the explode distance
+// is scaled down to stay inside the screen instead of clipping off the edges.
+const explodeOffset = isMobile
+  ? { 1: { x: -46, y: -19 }, 2: { x: -23, y: -10 }, 3: { x: 0, y: 0 }, 4: { x: 23, y: 10 }, 5: { x: 46, y: 19 } }
+  : { 1: { x: -135, y: -57 }, 2: { x: -67, y: -29 }, 3: { x: 0, y: 0 }, 4: { x: 67, y: 29 }, 5: { x: 135, y: 57 } };
 
 layers.forEach(layer => {
   gsap.set(layer, { x: 0, y: 0 });

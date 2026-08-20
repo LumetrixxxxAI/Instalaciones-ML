@@ -589,17 +589,38 @@ section h2 { font-size: clamp(28px, 4vw, 44px); color: var(--white); margin-bott
 
   .despiece-pin { height: 480vh; }
   .despiece-stage { padding: 0 20px; }
-  .despiece-panel { max-width: 340px; }
+  .despiece-panel { max-width: 250px; }
   .cap-step h3 { font-size: 22px; }
   .cap-step p { font-size: 15px; }
 
-  .sistema-diagram { height: 460px; padding: 0; }
-  .sistema-node[data-node="red"] { left: 85% !important; }
-  .sistema-node[data-node="sol"] { left: 12% !important; }
-  .sistema-node { width: 74px; }
-  .sistema-node img { width: 52px; height: 52px; }
-  .sistema-node span { font-size: 11.5px; }
-  .node-icon-text { width: 52px; height: 52px; font-size: 10px; }
+  /* Absolute % positioning can't fit 6 wide nodes on a narrow screen without
+     overlapping, so on mobile the flow becomes a simple static vertical stack. */
+  .sistema-diagram {
+    height: auto;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .sistema-lines { display: none; }
+  .sistema-node {
+    position: static !important;
+    top: auto; left: auto; transform: none;
+    width: auto;
+    margin-bottom: 30px;
+  }
+  .sistema-node:last-child { margin-bottom: 0; }
+  .sistema-node:not(:last-child)::after {
+    content: '';
+    display: block;
+    width: 2px;
+    height: 26px;
+    margin: 10px auto 0;
+    background: linear-gradient(var(--sun-500), transparent);
+  }
+  .sistema-node img { width: 56px; height: 56px; }
+  .sistema-node span { font-size: 12.5px; }
+  .node-icon-text { width: 56px; height: 56px; font-size: 10.5px; }
 
   .footer-inner { grid-template-columns: 1fr; text-align: left; }
   .footer-bottom { flex-direction: column; text-align: center; }
@@ -607,7 +628,7 @@ section h2 { font-size: clamp(28px, 4vw, 44px); color: var(--white); margin-bott
 
 @media (max-width: 480px) {
   .container { padding: 0 18px; }
-  .despiece-panel { max-width: 300px; }
+  .despiece-panel { max-width: 220px; }
   .whatsapp-float { width: 52px; height: 52px; bottom: 16px; right: 16px; }
   .cookie-banner { flex-direction: column; align-items: flex-start; }
 }
