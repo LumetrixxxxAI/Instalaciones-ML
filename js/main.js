@@ -111,6 +111,13 @@ counters.forEach(c => counterObserver.observe(c));
 /* ---------- GSAP ScrollTrigger: Despiece (exploded view) ---------- */
 gsap.registerPlugin(ScrollTrigger);
 
+// On mobile, scrolling up/down repeatedly shows/hides the browser's address bar,
+// which resizes the viewport and would otherwise make ScrollTrigger re-measure
+// everything mid-scroll — that's what desyncs the explode animation ("se buguea").
+// This tells it to ignore those address-bar-only resizes.
+ScrollTrigger.config({ ignoreMobileResize: true });
+window.addEventListener('load', () => ScrollTrigger.refresh());
+
 const isMobile = window.matchMedia('(max-width: 768px)').matches;
 const layers = gsap.utils.toArray('.despiece-panel .layer');
 const capSteps = gsap.utils.toArray('.cap-step');
@@ -219,7 +226,10 @@ despieceTimeline.to(layerCover, {
 const flowPaths = document.querySelectorAll('.sistema-lines path');
 flowPaths.forEach(path => {
   const length = path.getTotalLength();
-  path.style.strokeDasharray = length;
+  // Casa → Red keeps a real dashed pattern (excedentes van a la red, no es una
+  // conexión directa/continua); the rest use one long dash so they read as a
+  // solid line once drawn in.
+  path.style.strokeDasharray = path.classList.contains('line-dashed') ? '10 8' : length;
   path.style.strokeDashoffset = length;
 });
 
